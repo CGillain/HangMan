@@ -7,8 +7,14 @@ guess_word = random.choice(Word_List.word_list)
 #print(guess_word)
 
 from tkinter import *
+from PIL import ImageTk, Image
+import os
 
-class Hello:
+
+
+window = Tk()
+
+class hangman:
     def __init__(self, window):
         self.window = window
         self.idx = 0
@@ -19,18 +25,19 @@ class Hello:
         self.lb.grid(row=0, pady=20, columnspan=2)
 
         self.bt = Button(master=window, text="Exit", font=("Helvetica", 15), command=sys.exit)
-        self.bt.grid(row=1)
+        self.bt.grid(row=7, columnspan= 3)
 
-        self.bt2 = Button(master=window, text="Count", font=("Helvetica", 15), command=self.count)
-        self.bt2.grid(row=1, column=1)
+        self.width = 50
+        self.height = 50
+        #self.photo = Image.open("1.png")
+        #self.photo = self.photo.resiz(self.width, self.height)
+        self.photo = ImageTk.PhotoImage(Image.open("1.png"))
+        self.label= Label(window, image= self.photo).grid(row=1, column=1)
 
-    def count(self):
-        self.idx += 1
-        self.lb.config(text="Hello World" + str(self.idx))
-        return
 
 
-window = Tk()
-hello = Hello(window)
+
+
+hangman = hangman(window)
 window.mainloop()
 
