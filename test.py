@@ -116,6 +116,20 @@ def retrieve_input(arg=None):
         print(new)
 
 
+def retrieve_input(arg=None):
+    result = letter.get()
+    guessed_correct=False
+    # print(result)
+    for i in range(len(guess_word)):
+        guess_word_array = list(guess_word)
+        letters_word_array = list (letters_word)
+        if guess_word_array[i] == result:
+            guessed_correct=True
+            guess_word_array[i] = "_"
+            letters_word_array[i]=result
+            guess_word="".join(guess_word_array)
+            letters_word="".join(letters_word_array)
+            word.configure(text="Guess the word: " + guess_word_closer)
 
 
 
