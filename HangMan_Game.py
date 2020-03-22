@@ -47,16 +47,7 @@ class hangman:
         self.letter_input.grid(row=4, column=3)
         self.letter_input = self.letter_input.get()
 
-        # Check if letter in word
-        self.letter_input = Entry(window)
-        self.letter_input.grid(row=4, column=3)
-        self.letter_input = self.letter_input.get()    # getting the input of user
 
-
-
-
-
-window.mainloop()
 
 hangman = hangman(window)
 

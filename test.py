@@ -97,40 +97,54 @@ guess_count= 0
 
 # Secret word showing with _
 letters_word = "_ " * len(guess_word)
-word= Label(window, text="Guess the word: " + letters_word, font=("Calibri", 20), fg="black").grid(row=3, column=2)
+word = Label(window, text="Guess the word: " + letters_word, font=("Calibri", 20), fg="black")
+word.grid(row=3, column=2)
 
 
 # Start Guessing
-letter_label= Label(window, text="Enter a letter: ", font=("Calibri", 20), fg="black").grid(row=3, column=3)
-letter_input = Entry(window)
+def retrieve_input(arg=None):
+    result = letter.get()
+
+    if result in guess_word:
+        list_guess_word = list(guess_word)
+        new= []
+        print(list_guess_word)
+        for i in list_guess_word:
+            if i != result:
+                i = "_ "
+            new.append(i)
+        print(new)
+
+
+
+
+
+
+
+letter_label= Label(window, text="Guess, enter a letter: ", font=("Calibri", 20), fg="black").grid(row=3, column=3)
+
+letter = StringVar()
+letter_input = Entry(window, textvariable=letter)
 letter_input.grid(row=4, column=3)
-letter_input = letter_input.get()
-
-    # Check if letter in word
-
-def userinput(letter_input):
-    letter_input = Entry(window)
-    letter_input.grid(row=4, column=3)
-    letter_input = letter_input.get()    # getting the input of user
-
-    if letter_input in guess_word:
-        alphabet = "abcdefghijklmnopqrstuvwxyz"
-        alphabet.replace(letter_input, "")
-        letters_word_1= letters_word.replace(alphabet, "_ ")
-        word_1 = Label(window, text="Guess the word: " + letters_word_1, font=("Calibri", 20),
-                          fg="black").grid(row=3, column=2)
-
-    else:
-        photo_2= Image.open("2.png")
-        photo_2 = photo_2.resize((500, 500), Image.ANTIALIAS)
-        photo_2 = ImageTk.PhotoImage(photo_2)
-        label_2= Label(window, image= photo_2).grid(row=2, column=2)
 
 
-window.bind("<Return>", userinput(letter_input))
 
-window.mainloop()
+btn1= Button(window, text='Show', command=retrieve_input)
+btn1.grid(row=6,column=6)
+
+
+
+btn2=Button(window,
+          text='Quit',
+          command=window.quit).grid(row=7,
+                                    column=6
+                                    )
+
+
 
 
 window.mainloop()
+
+
+
 
