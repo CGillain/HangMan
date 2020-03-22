@@ -105,6 +105,7 @@ def NewGame():
     # Word to guess
     the_word = random.choice(word_list)
     the_word = str(the_word)
+    print(the_word)
     TheWordWithDashes=" ".join(the_word)
     DashedWord.set(" ".join("_"*len(the_word)))
 
@@ -119,7 +120,7 @@ def letterguess(letter):
                     guessed[c]= letter
                 DashedWord.set("".join(guessed))
                 if DashedWord.get() == TheWordWithDashes:
-                    messagebox.showinfo("Hangman", "Congratulations! You guessed it")
+                    messagebox.showinfo("Hangman", "Congratulations! You WONNNNNNN")
 
         else:
             NumberOfGuesses += 1
