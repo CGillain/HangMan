@@ -90,47 +90,42 @@ photo_10 = ImageTk.PhotoImage(photo_10)
 
 
 # Word to guess
-guess_word = random.choice(Word_List.word_list)
+guess_word = random.choice(Word_List.new_word_list)
 guess_word= str(guess_word)
 print(guess_word)
-guess_count= 0
 
-# Secret word showing with _
+
+# Start Guessing
 letters_word = "_ " * len(guess_word)
 word = Label(window, text="Guess the word: " + letters_word, font=("Calibri", 20), fg="black")
 word.grid(row=3, column=2)
 
-
-# Start Guessing
 def retrieve_input(arg=None):
+
     result = letter.get()
+    new = []
+    guess_wrong_count = 0
 
     if result in guess_word:
         list_guess_word = list(guess_word)
-        new= []
-        print(list_guess_word)
         for i in list_guess_word:
             if i != result:
                 i = "_ "
             new.append(i)
-        print(new)
+        letters_word= "".join(new)
+        #print(letters_word)
+        word.configure(text="Guess the word: " + letters_word)
 
+    else:
+        guess_wrong_count += 1
+        if guess_wrong_count == 1:
+            label_1= Label(window, image= photo_1).grid(row=2, column=2)
 
-def retrieve_input(arg=None):
-    result = letter.get()
-    guessed_correct=False
-    # print(result)
-    for i in range(len(guess_word)):
-        guess_word_array = list(guess_word)
-        letters_word_array = list (letters_word)
-        if guess_word_array[i] == result:
-            guessed_correct=True
-            guess_word_array[i] = "_"
-            letters_word_array[i]=result
-            guess_word="".join(guess_word_array)
-            letters_word="".join(letters_word_array)
-            word.configure(text="Guess the word: " + guess_word_closer)
+        if guess_wrong_count == 2:
+            label_2 = Label(window, image=photo_2).grid(row=2, column=2)
 
+        if guess_wrong_count == 3:
+            label_3 = Label(window, image=photo_3).grid(row=2, column=2)
 
 
 
@@ -140,22 +135,13 @@ letter_label= Label(window, text="Guess, enter a letter: ", font=("Calibri", 20)
 letter = StringVar()
 letter_input = Entry(window, textvariable=letter)
 letter_input.grid(row=4, column=3)
-
-
+#letter_input.delete(0, 'end')
 
 btn1= Button(window, text='Show', command=retrieve_input)
 btn1.grid(row=6,column=6)
 
-
-
-btn2=Button(window,
-          text='Quit',
-          command=window.quit).grid(row=7,
-                                    column=6
-                                    )
-
-
-
+btn2=Button(window,text='Quit',
+          command=window.quit).grid(row=7,column=6)
 
 window.mainloop()
 
